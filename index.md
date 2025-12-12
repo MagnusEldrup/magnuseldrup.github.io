@@ -1,6 +1,19 @@
 ---
-layout: default
-title: "Home"
+title: "Magnus Eldrup"
+description: " <img src="{{ site.baseurl }}/assets/img/magnus.jpeg" alt="Magnus Eldrup"
+         width="180" style="float:left; margin-right:15px; margin-bottom:15px;">
+
+    <h1>Magnus Eldrup</h1>
+
+    <p>
+      PhD Candidate in Economics, Department of Economics, University of Copenhagen
+      (Development Economics Research Group, DERG).
+    </p>
+
+    <p><strong>Email:</strong> mel@econ.ku.dk</p>
+    <p><strong>Affiliation:</strong> Department of Economics, University of Copenhagen</p>
+    <p><strong>Fields:</strong> Public economics, development, taxation</p>
+    <p><strong>CV:</strong> <a href="{{ site.baseurl }}/assets/cv/MagnusEldrup_CV.pdf">PDF</a></p>"
 ---
 
 <p>
