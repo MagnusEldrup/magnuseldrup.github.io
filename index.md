@@ -14,7 +14,8 @@ title: "Magnus Eldrup"
   <div class="hero-left">
     <h1>Magnus Eldrup</h1>
     <p>
-      PhD Candidate in Economics, Department of Ecomics, University of Copenhagen, DERG Research Group.
+      PhD Candidate in Economics, Department of Economics, University of Copenhagen
+      (Development Economics Research Group, DERG).
     </p>
 
     <p>
@@ -25,7 +26,7 @@ title: "Magnus Eldrup"
 
   <div class="hero-right">
     <p><strong>Email:</strong> mel@econ.ku.dk</p>
-    <p><strong>Affiliation:</strong> [Department], [University]</p>
+    <p><strong>Affiliation:</strong> Department of Economics, University of Copenhagen</p>
     <p><strong>Fields:</strong> Public economics, development, taxation</p>
     <p><strong>CV:</strong> <a href="{{ site.baseurl }}/assets/cv/MagnusEldrup_CV.pdf">PDF</a></p>
     <p><strong>Job Market Paper:</strong> <a href="{{ site.baseurl }}/assets/papers/JMP.pdf">PDF</a></p>
@@ -34,9 +35,9 @@ title: "Magnus Eldrup"
 
 ## Job Market Paper
 
-**Horizontal Inequality in Optimal Taxation:**
-*Evidence from a Development Context*   
+**Horizontal Inequality in Optimal Taxation: Evidence from a Development Context**  
 _Job Market Paper_
+
 Short 4–6 line abstract here: question, setting, method in one line each,
 and a final line with the main quantitative result.
 
