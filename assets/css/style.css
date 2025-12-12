@@ -1,0 +1,36 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* TWO-COLUMN HERO LAYOUT */
+
+.hero {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap; /* Falls back to stacked on mobile */
+}
+
+.hero-left {
+  flex: 1 1 260px;
+}
+
+.hero-right {
+  flex: 2 1 300px;
+}
+
+/* Spacing so content doesn't stick together */
+.hero-left p,
+.hero-right p {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Make the abstract toggle text smaller */
+details summary {
+  font-size: 0.85rem;
+  cursor: pointer;
+}
