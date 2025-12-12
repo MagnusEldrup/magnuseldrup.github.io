@@ -14,8 +14,7 @@ title: "Magnus Eldrup"
   <div class="hero-left">
     <h1>Magnus Eldrup</h1>
     <p>
-      PhD Candidate in Economics, [Your Department], [Your University].<br>
-      Job market candidate 2025–26.
+      PhD Candidate in Economics, Department of Ecomics, University of Copenhagen, DERG Research Group.
     </p>
 
     <p>
@@ -25,7 +24,7 @@ title: "Magnus Eldrup"
   </div>
 
   <div class="hero-right">
-    <p><strong>Email:</strong> you@university.edu</p>
+    <p><strong>Email:</strong> mel@econ.ku.dk</p>
     <p><strong>Affiliation:</strong> [Department], [University]</p>
     <p><strong>Fields:</strong> Public economics, development, taxation</p>
     <p><strong>CV:</strong> <a href="{{ site.baseurl }}/assets/cv/MagnusEldrup_CV.pdf">PDF</a></p>
@@ -35,12 +34,9 @@ title: "Magnus Eldrup"
 
 ## Job Market Paper
 
-**[Full Title of Your JMP]**  
+**Horizontal Inequality in Optimal Taxation:**
+*Evidence from a Development Context*   
 _Job Market Paper_
-
-[Paper (PDF)]({{ site.baseurl }}/assets/papers/JMP.pdf) ·
-[Slides (PDF)]({{ site.baseurl }}/assets/slides/JMP_slides.pdf)
-
 Short 4–6 line abstract here: question, setting, method in one line each,
 and a final line with the main quantitative result.
 
