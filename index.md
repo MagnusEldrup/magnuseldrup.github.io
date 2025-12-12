@@ -6,6 +6,9 @@ title: "Magnus Eldrup"
 
 <div class="hero">
   <div class="hero-left">
+  <img src="{{ site.baseurl }}/assets/img/magnus.jpg" alt="Magnus Eldrup"
+     width="180" style="float:right; margin-left:15px; margin-bottom:15px;">
+
     <h1>Magnus Eldrup</h1>
     <p>
       PhD Candidate in Economics, Department of Economics, University of Copenhagen
