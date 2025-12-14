@@ -8,9 +8,9 @@ title: "Magnus Eldrup"
 
 <h1>Magnus Eldrup</h1>
 <p>
-PhD Candidate in Economics, Department of Economics, University of Copenhagen 
+PhD Candidate in Economics, University of Copenhagen 
 </p>
-<p style="line-height:1.6;">
+<p style="line-height:1.9;">
 <strong>Email:</strong> mel@econ.ku.dk <br>
 <strong>Affiliation:</strong> Department of Economics, University of Copenhagen <br>
 <strong>Fields:</strong> Public economics, development, taxation <br>
@@ -21,10 +21,6 @@ PhD Candidate in Economics, Department of Economics, University of Copenhagen
 <div style="clear: both;"></div>
 
 Hi there. I am a PhD student at the University of Copenhagen with the Development Economics Research Group (DERG). With my research I attempt to help build a deeper understanding of issues of taxation in developing countries, especially as it pertains to the interplay between the formal and the informal sector. Before embarking on my PhD I completed the Msc. in Economics for Development at the University of Oxford and an MA. in Economics from the University of Copenhagen.  
-
-
-I work on public and development economics, with a focus on taxation,
-enforcement, and the interaction between formal and informal sectors.
 
 ## Job Market Paper
 
@@ -49,11 +45,8 @@ _with Paolo Falco and Andreas Menzel_<br>
 Field work in progress
 
 ## Policy Work
-**Reforming Excise Taxation on Alcohol Products in Kenya** <br>
+**Reforming Excise Taxation on Alcohol Products in Kenya** and **Reforming Excise Taxation on Tobacco Products in Kenya** <br>
 _with Alex Oguso, James Ochieng', Nathan Remcho & Hellen Chemnyongoi_<br>
 <!--<a href="https://publication.aercafricalibrary.org/items/dcf8da2b-9b7c-4da1-8914-745bbabd58f2">Policy Paper</a>-->
-
-**Reforming Excise Taxation on Tobacco Products in Kenya** <br>
-_with Alex Oguso, James Ochieng', Nathan Remcho & Hellen Chemnyongoi_<br>
 <!--<a href="https://publication.aercafricalibrary.org/items/bf9b0a95-bb35-45e1-91a0-422b14b6b350">Policy Paper</a>-->
 
