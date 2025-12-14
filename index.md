@@ -7,14 +7,15 @@ title: "Magnus Eldrup"
     width="280" style="float:left; margin-right:15px; margin-bottom:15px; margin-top:25px;">
 
 <h1>Magnus Eldrup</h1>
-
 <p>
-PhD Candidate in Economics, Department of Economics, University of Copenhagen <br>
+PhD Candidate in Economics, Department of Economics, University of Copenhagen 
+</p>
+<p style="line-height:1.6;">
 <strong>Email:</strong> mel@econ.ku.dk <br>
 <strong>Affiliation:</strong> Department of Economics, University of Copenhagen <br>
 <strong>Fields:</strong> Public economics, development, taxation <br>
-<strong>CV:</strong> <a href="{{ site.baseurl }}/assets/cv/MagnusEldrup_CV.pdf">PDF</a> <br>
-<p>
+<strong>CV:</strong> <a href="{{ site.baseurl }}/assets/cv/MagnusEldrup_CV2025.pdf">PDF</a> <br>
+</p>
 
 <!-- Clear float before long description -->
 <div style="clear: both;"></div>
