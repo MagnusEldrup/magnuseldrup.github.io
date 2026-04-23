@@ -26,6 +26,7 @@ Hi there. I am a PhD student at the University of Copenhagen with the Developmen
 
 **Horizontal Inequality in Optimal Taxation: Evidence from a Development Context** <br>
 _Job Market Paper_
+Presented at CSAE 2026, KIEL-CEPR AEDC 2025 and NPPS 2025
 
 <details>
 <summary><strong style="color: #003972ff;">Abstract (click to expand)</strong></summary>
@@ -40,8 +41,16 @@ Exemptions are a defining feature of income tax systems in developing countries,
 _with Claus Thustrup Kreiner_<br>
 Presented at CESifo Public Economics Conference 2025 and IIPF 2025
 
+**Refund Design and VAT Distortions: Evidence from a Kenyan Tax Reform** <br>
+_with Cyrus Mutuku and Bjørn Bo Sørensen_<br>
+<details>
+<summary><strong style="color: #003972ff;">Preliminary abstract (click to expand)</strong></summary>
+When firms supply both zero-rated and taxable goods, tax authorities cannot observe how common inputs are allocated across activities and source-based VAT refunds must be determined by apportionment formulas. We show that no formula can simultaneously preserve profit neutrality, ensuring zero-rated output bears no residual tax, and wedge neutrality, ensuring no distortion in input allocation at the margin. Source-based refund design therefore entails a trade-off between liquidity distortions and production distortions. We study a major reform of the Kenyan VAT apportionment formula that more than doubled allowable refunds for treated firms and generated separate shocks to both distortions. Using the universe of administrative VAT returns and refund claims from 2017–2024, we find that reductions in the marginal wedge led to substantial production reallocation, increasing zero-rated sales with a nearly offsetting decline in standard-rated sales. A fall in the average profit distortion increased input use but did not raise total sales. The results indicate that the refund design primarily affects the allocation of production across tax bases rather than overall firm growth.
+</details>
+
 **A Worker's Worth**<br>
 _with Paolo Falco and Andreas Menzel_<br>
+Recipient of IGC grant ETH-24324
 Field work in progress
 
 ## Policy Work
