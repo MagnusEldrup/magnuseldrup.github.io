@@ -3,6 +3,8 @@ title: "Magnus Eldrup"
 
 ---
 
+[Home](/) - [Research](/research/) - [CV](/cv/)
+
 <img src="{{ site.baseurl }}/assets/img/magnus.jpeg" alt="Magnus Eldrup"
     width="280" style="float:left; margin-right:15px; margin-bottom:15px; margin-top:25px;">
 

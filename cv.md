@@ -1,11 +1,12 @@
 ---
 layout: default
 title: "CV"
+permalink: /cv/
 ---
 
-[Home](/academic-landing-page/) · [Research](/academic-landing-page/research) · [CV](/academic-landing-page/cv) · [Teaching](/academic-landing-page/teaching)
+[Home](/) - [Research](/research/) - [CV](/cv/)
 
 # Curriculum Vitae
 
-Download:  
-[CV (PDF)](/academic-landing-page/assets/cv/MagnusEldrup_CV.pdf)
+Download:
+[CV (PDF)](/assets/cv/MagnusEldrup_CV2025.pdf)
