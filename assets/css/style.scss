@@ -10,7 +10,7 @@ $accent-hover: #b06860;         // lighter on hover
 $accent-border: rgba(153, 80, 74, 0.30);
 $tint-strong: #f6ecea;          // expanded-abstract background
 $tint-soft: #faf4f3;            // entry hover background
-$separator: #c49a94;            // faded-red side gutters
+$separator: #99504a;            // faded-red side gutters
 
 /* ---- Page frame ---- */
 html {
@@ -29,8 +29,8 @@ body {
   margin: 0 auto !important;
   padding: 48px !important;
   background-color: #ffffff;
-  border-left: 3px solid $separator;
-  border-right: 3px solid $separator;
+  border-left: 2px solid $separator;
+  border-right: 2px solid $separator;
 }
 
 /* ---- Typography: serif body, sans headings ---- */
