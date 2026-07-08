@@ -3,9 +3,7 @@ title: "Magnus Eldrup"
 
 ---
 
-[Home](/) - [Research](/research/) - [CV](/cv/)
-
-<img src="{{ site.baseurl }}/assets/img/magnus.jpeg" alt="Magnus Eldrup"
+<img src="{{ site.baseurl }}/assets/img/magnus.jpeg" alt="Magnus Eldrup" class="me-photo"
     width="280" style="float:left; margin-right:15px; margin-bottom:15px; margin-top:25px;">
 
 <h1>Magnus Eldrup</h1>
@@ -22,7 +20,7 @@ PhD Candidate in Economics, University of Copenhagen
 <!-- Clear float before long description -->
 <div style="clear: both;"></div>
 
-Hi there. I am a PhD student at the University of Copenhagen with the Development Economics Research Group (DERG). Through my research I try to help better understand issues of taxation in developing countries, especially as it pertains to the interplay between the formal and the informal sector. Before embarking on my PhD I completed the Msc. in Economics for Development at the University of Oxford and an MA. in Economics from the University of Copenhagen.  
+Hi there. I am a PhD student at the University of Copenhagen with the Development Economics Research Group (DERG). Through my research I try to help better understand issues of taxation in developing countries, especially as it pertains to the interplay between the formal and the informal sector. Before embarking on my PhD I completed the Msc. in Economics for Development at the University of Oxford and an MA. in Economics from the University of Copenhagen. In the fall of 2025 I visited the Harvard Kennedy School as a PhD Fellow. 
 
 ## Job Market Paper
 
@@ -60,4 +58,7 @@ Field work in progress
 _with Alex Oguso, James Ochieng', Nathan Remcho & Hellen Chemnyongoi_<br>
 <!--<a href="https://publication.aercafricalibrary.org/items/dcf8da2b-9b7c-4da1-8914-745bbabd58f2">Policy Paper</a>-->
 <!--<a href="https://publication.aercafricalibrary.org/items/bf9b0a95-bb35-45e1-91a0-422b14b6b350">Policy Paper</a>-->
+
+## Media
+**[Dagbladet Information: Comment on Climate-tied Aid](https://www.information.dk/debat/2025/11/nej-rune-lykkeberg-bill-gates-dumt-svin?kupon=eyJpYXQiOjE3ODM0OTM5NDMsInN1YiI6IjQ1NTU4Mjo4MzQ2NzUifQ.tTZqZ10S0Jdsh_aEW0ndfg)** (Danish)
 
