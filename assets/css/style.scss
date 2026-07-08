@@ -20,13 +20,16 @@ body {
   min-height: 100vh;
 }
 
-/* Narrower, centered content on a clean white card (even margins) */
+/* Full-height white "sheet": grey shows only as side gutters,
+   column runs top-to-bottom with square corners. */
 .container-lg {
   max-width: 820px;
+  min-height: 100vh;
+  margin: 0 auto !important;
+  padding: 48px !important;
   background-color: #ffffff;
-  border: 1px solid #e6e7ea;
-  border-radius: 10px;
-  padding: 40px 48px;
+  border-left: 1px solid #e6e7ea;
+  border-right: 1px solid #e6e7ea;
 }
 
 /* ---- Typography: serif body, sans headings ---- */
