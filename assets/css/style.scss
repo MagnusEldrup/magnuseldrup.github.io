@@ -14,11 +14,12 @@ $separator: #99504a;            // faded-red side gutters
 
 /* ---- Page frame ---- */
 html {
-  background-color: #f4f5f6;
+  background-color: #efe1e0;   // matches gradient edge (covers overscroll)
 }
 body {
-  background-color: #f4f5f6;
   min-height: 100vh;
+  /* neutral grey behind the sheet, fading to a faint red toward the edges */
+  background: radial-gradient(ellipse at 50% 42%, #f4f5f6 0%, #f4f5f6 30%, #efe1e0 100%) fixed;
 }
 
 /* Full-height white "sheet": grey shows only as side gutters,
