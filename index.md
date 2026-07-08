@@ -12,7 +12,7 @@ title: "Magnus Eldrup"
   <span class="site-subtitle">PhD Candidate in Economics · University of Copenhagen</span>
 </div>
 
-<p style="line-height:1.9;">
+<p style="line-height:1.9; text-align:left;">
 <strong>Email:</strong> mel@econ.ku.dk <br>
 <strong>Affiliation:</strong> Department of Economics, University of Copenhagen <br>
 <strong>Fields:</strong> Public economics, development, taxation <br>
@@ -78,8 +78,5 @@ _with Alex Oguso, James Ochieng', Nathan Remcho & Hellen Chemnyongoi_
 </div>
 
 <div class="site-footer" markdown="1">
-[Email](mailto:mel@econ.ku.dk) · Google Scholar · LinkedIn · GitHub
+[Email](mailto:mel@econ.ku.dk) · [LinkedIn](https://www.linkedin.com/in/magnus-eldrup-72b075134/) · [GitHub](https://github.com/MagnusEldrup)
 </div>
-<!-- To turn the footer names into real links, replace the line above with, e.g.:
-[Email](mailto:mel@econ.ku.dk) · [Google Scholar](SCHOLAR_URL) · [LinkedIn](LINKEDIN_URL) · [GitHub](GITHUB_URL)
--->
