@@ -8,7 +8,6 @@
 $accent: #99504a;               // faded reddish primary
 $accent-hover: #b06860;         // lighter on hover
 $accent-border: rgba(153, 80, 74, 0.30);
-$sheet-border: rgba(153, 80, 74, 0.22);
 $tint-strong: #f6ecea;          // expanded-abstract background
 $tint-soft: #faf4f3;            // entry hover background
 
@@ -29,8 +28,8 @@ body {
   margin: 0 auto !important;
   padding: 48px !important;
   background-color: #ffffff;
-  border-left: 2px solid $sheet-border;
-  border-right: 2px solid $sheet-border;
+  border-left: 1px solid #e6e7ea;
+  border-right: 1px solid #e6e7ea;
 }
 
 /* ---- Typography: serif body, sans headings ---- */
@@ -96,16 +95,6 @@ body {
   margin: 6px 0 14px;
   color: #666;
   font-size: 1.05rem;
-}
-
-/* ---- Intro description ---- */
-.bio {
-  margin-top: 4px;
-}
-.bio p + p {
-  margin-top: 0.95em;
-  padding-top: 0.95em;
-  border-top: 1px solid $sheet-border;
 }
 
 /* ---- Research / publication entries as subtle cards ---- */
