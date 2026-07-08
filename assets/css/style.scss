@@ -1,0 +1,124 @@
+---
+---
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+@import "{{ site.theme }}";
+
+/* ---- Page frame ---- */
+body {
+  background-color: #f4f5f6;
+}
+
+/* Narrower, centered content on a clean white card (even margins) */
+.container-lg {
+  max-width: 760px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  padding: 40px 48px;
+}
+
+/* ---- Typography: serif body, sans headings ---- */
+.markdown-body {
+  font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: #2b2b2b;
+  background: transparent;
+}
+.markdown-body h1,
+.markdown-body h2,
+.site-header h1,
+.entry strong {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Section headings in navy */
+.markdown-body h2 {
+  color: #003972;
+  font-weight: 600;
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 0.3em;
+  margin-top: 1.8em;
+}
+
+/* Muted navy links instead of the theme's bright blue */
+.markdown-body a {
+  color: #003972;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 57, 114, 0.28);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.markdown-body a:hover {
+  color: #00579f;
+  border-bottom-color: #00579f;
+}
+
+/* ---- Header: name + subtitle beside the photo ---- */
+.me-photo {
+  border-radius: 14px;
+  filter: saturate(0.7) contrast(0.97);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+.site-header h1 {
+  margin: 0.1em 0 0;
+  padding: 0;
+  border-bottom: none;
+  color: #003972;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.site-subtitle {
+  display: block;
+  margin: 6px 0 14px;
+  color: #666;
+  font-size: 1.05rem;
+}
+
+/* ---- Research / publication entries as subtle cards ---- */
+.entry {
+  color: #6b6b6b;
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-left: 3px solid transparent;
+  border-radius: 6px;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.entry:hover {
+  background-color: #f4f7fa;
+  border-left-color: #003972;
+}
+.entry strong {
+  color: #003972;
+  font-weight: 600;
+}
+
+/* ---- Abstract toggle + expanded highlight ---- */
+.markdown-body details summary {
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #003972;
+}
+.markdown-body details[open] {
+  background-color: #eef3f8;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 10px 0 4px;
+  color: #2b2b2b;
+}
+.markdown-body details[open] summary {
+  margin-bottom: 8px;
+}
+
+/* ---- Footer ---- */
+.site-footer {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid #e6e6e6;
+  color: #8a8a8a;
+  font-size: 0.9rem;
+}
+.site-footer a {
+  color: #666 !important;
+  border-bottom-color: rgba(102, 102, 102, 0.3) !important;
+}

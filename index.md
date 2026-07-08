@@ -1,15 +1,16 @@
 ---
+layout: default
 title: "Magnus Eldrup"
 
 ---
 
+<img src="{{ site.baseurl }}/assets/img/magnus.jpeg" alt="Magnus Eldrup" class="me-photo"
+    width="240" style="float:left; margin:6px 24px 12px 0;">
+
 <div class="site-header">
   <h1>Magnus Eldrup</h1>
-  <p class="site-subtitle">PhD Candidate in Economics · University of Copenhagen</p>
+  <span class="site-subtitle">PhD Candidate in Economics · University of Copenhagen</span>
 </div>
-
-<img src="{{ site.baseurl }}/assets/img/magnus.jpeg" alt="Magnus Eldrup" class="me-photo"
-    width="280" style="float:left; margin-right:20px; margin-bottom:15px;">
 
 <p style="line-height:1.9;">
 <strong>Email:</strong> mel@econ.ku.dk <br>
