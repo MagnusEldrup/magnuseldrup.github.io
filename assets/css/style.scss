@@ -11,6 +11,7 @@ $accent-border: rgba(153, 80, 74, 0.30);
 $tint-strong: #f6ecea;          // expanded-abstract background
 $tint-soft: #faf4f3;            // entry hover background
 $separator: #99504a;            // faded-red side gutters
+$sheet: #fffdfb;                // warm near-white for the reading surface
 
 /* ---- Page frame ---- */
 html {
@@ -29,7 +30,7 @@ body {
   min-height: 100vh;
   margin: 0 auto !important;
   padding: 48px !important;
-  background-color: #ffffff;
+  background-color: $sheet;
   border-left: 2px solid $separator;
   border-right: 2px solid $separator;
 }
@@ -40,7 +41,9 @@ body {
   font-size: 17px;
   line-height: 1.65;
   color: #2b2b2b;
-  background: transparent;
+  /* This class shares the sheet element with .container-lg; keep the
+     reading surface opaque so the page gradient cannot show through. */
+  background-color: $sheet;
 }
 .markdown-body h1,
 .markdown-body h2,
