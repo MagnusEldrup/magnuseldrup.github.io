@@ -29,12 +29,13 @@ Before embarking on my PhD I completed the Msc. in Economics for Development at 
 ## Job Market Paper
 
 <div class="entry" markdown="1">
-**Horizontal Inequality in Optimal Taxation: Evidence from a Development Context** <br>
+**[Horizontal Inequality in Optimal Taxation: Evidence from a Development Context](https://www.econ.ku.dk/cebi/publikationer/working-papers/CEBI_WP_19-26.pdf)** <br>
 _Job Market Paper_ <br>
-Presented at CSAE 2026, KIEL-CEPR AEDC 2025 and NPPS 2025
+Presented at CSAE 2026, KIEL-CEPR AEDC 2025 and NPPS 2025 <br>
+Recipient of grants from the Nordic Tax Research Council, The Structural Transformation and Economic Growth (STEG) programme, and the Ministry of Foreign Affairs of Denmark (DANIDA)
 
 <details>
-<summary><strong>Abstract (click to expand)</strong></summary>
+<summary><strong>Expand Abstract</strong> &middot; <a href="https://www.econ.ku.dk/cebi/publikationer/working-papers/CEBI_WP_19-26.pdf">Working Paper</a></summary>
 Exemptions are a key feature of income tax systems in developing countries, yet standard optimal tax models cannot explain them. By assuming full compliance, these models ignore horizontal inequality between formal and informal workers, understating the social cost of taxing the former. Extending the optimal tax framework, I incorporate informality and horizontal inequality aversion. I conduct a survey experiment in Kenya, finding that respondents place substantially higher welfare weight on formal taxpayers than otherwise identical informal workers. Combining these empirical preferences with administrative tax data yields prescriptions of high exemption thresholds, a result alternative explanations such as extensive margin responses or administrative costs cannot rationalize.
 </details>
 </div>
@@ -48,12 +49,12 @@ Presented at CPER Public Economics 2026, CESifo Public Economics Conference 2025
 </div>
 
 <div class="entry" markdown="1">
-**The Limits of VAT Neutrality: Theory and Evidence from Kenya** <br>
+**Tax Administration and VAT Neutrality: Theory and Evidence from Kenya** <br>
 _with Cyrus Mutuku and Bjørn Bo Sørensen_
 
 <details>
-<summary><strong>Preliminary abstract (click to expand)</strong></summary>
-The value-added tax is prized for preserving production efficiency, but this rests on full refunding of excess credits. We assemble a new database on VAT refund systems and show that 64.5 pct. of people in VAT countries live under source-based systems that often restrict refund eligibility to zero-rated activity. When firms in these systems supply both zero-rated and taxable goods, tax authorities cannot observe the allocation of inputs across activities and refunds must be determined by an apportionment formula. We prove that no formula can deliver both profit neutrality and wedge neutrality except under knife-edge restrictions on technology. Instead, every formula chooses which distortion to impose. Exploiting a 2019 Kenyan reform that increased refund generosity and differentially shocked both margins, we show that formula-induced distortions have sizable consequences for firm production. Firms exposed to a lower marginal distortion reallocated production towards zero-rated goods, increased exports, and expanded overall production. Within four years, the rise in taxable activity turned the reform's annual fiscal balance positive. The reform was likely welfare-improving, yet a third of misattribution is irreducible under any implementable rule, which points to high returns from measuring input use directly.
+<summary><strong>Abstract (click to expand)</strong></summary>
+Production efficiency is a central rationale for the VAT, but it is unclear whether it can be preserved when firms produce outputs subject to different tax treatment. We study this question through a 2019 reform of Kenya’s VAT refund apportionment formula using linked administrative tax and refund data. A one percentage point reduction in the marginal wedge induced firms to reorient production sharply toward zero-rated output, increasing zero-rated sales and total sales by about 5 percent of pre-reform sales and raising employment by 2–4 percent. Aggregating these estimates implies an increase in covered firms’ exports equivalent to roughly 3 percent of Kenya’s total goods exports. We develop a model that formalizes these distortions and shows they are inherent: source-based refund formulas cannot, in general, simultaneously preserve profit neutrality and marginal incentives when input use is unobserved. Our new database covering 182 countries shows that such source-based systems are the dominant global refund architecture, covering roughly two-thirds of the population living in countries with a VAT.
 </details>
 </div>
 
@@ -62,6 +63,11 @@ The value-added tax is prized for preserving production efficiency, but this res
 _with Paolo Falco and Andreas Menzel_<br>
 Recipient of IGC grant ETH-24324 <br>
 Field work in progress
+</div>
+
+<div class="entry" markdown="1">
+**Can AI Predict Top Five? Gender Bias in LLM Forecasts of Academic Excellence**<br>
+_with Paolo Falco andSarah Zaccagni_<br>
 </div>
 
 ## Policy Work
@@ -77,6 +83,10 @@ _with Alex Oguso, James Ochieng', Nathan Remcho & Hellen Chemnyongoi_
 
 <div class="entry" markdown="1">
 **[Dagbladet Information: Comment on Climate-tied Aid](https://www.information.dk/debat/2025/11/nej-rune-lykkeberg-bill-gates-dumt-svin?kupon=eyJpYXQiOjE3ODM0OTM5NDMsInN1YiI6IjQ1NTU4Mjo4MzQ2NzUifQ.tTZqZ10S0Jdsh_aEW0ndfg)** (Danish)
+</div>
+
+<div class="entry" markdown="1">
+**[Politiken: Comment on Differentiated VAT](https://politiken.dk/debat/debatindlaeg/art10953007/Danmark-har-alts%C3%A5-allerede-noget-som-mange-andre-lande-bruger-betydelige-kr%C3%A6fter-p%C3%A5-at-opn%C3%A5.-Hvorfor-%C3%B8del%C3%A6gge-det?shareToken=QvDg3-AHTLQQ)** (Danish)
 </div>
 
 <div class="site-footer" markdown="1">

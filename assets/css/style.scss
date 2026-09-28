@@ -15,12 +15,14 @@ $sheet: #fffdfb;                // warm near-white for the reading surface
 
 /* ---- Page frame ---- */
 html {
-  background-color: #efe1e0;   // matches gradient edge (covers overscroll)
+  /* Paint one continuous backdrop, including the space above the sheet. */
+  background: #efe1e0 radial-gradient(ellipse at 50% 42%, #f4f5f6 0%, #f4f5f6 30%, #efe1e0 100%) fixed;
 }
 body {
+  display: flow-root;          // keep the sheet's margin inside the body
+  margin: 0;
   min-height: 100vh;
-  /* neutral grey behind the sheet, fading to a faint red toward the edges */
-  background: radial-gradient(ellipse at 50% 42%, #f4f5f6 0%, #f4f5f6 30%, #efe1e0 100%) fixed;
+  background: transparent;
 }
 
 /* Inset reading sheet: the opaque surface keeps text legible while the
@@ -100,6 +102,16 @@ body {
   margin: 6px 0 14px;
   color: #666;
   font-size: 1.05rem;
+}
+
+@media (max-width: 640px) {
+  .me-photo {
+    float: none !important;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 6px 0 20px !important;
+  }
 }
 
 /* ---- Research / publication entries as subtle cards ---- */
