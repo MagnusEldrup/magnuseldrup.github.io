@@ -47,13 +47,20 @@ Exemptions are a key feature of income tax systems in developing countries, yet 
 
 <div class="entry" markdown="1">
 **Optimal Enforcement of Redistributive Taxation** <br>
-_with Claus Thustrup Kreiner_<br>
-Presented at CPER Public Economics 2026, CESifo Public Economics Conference 2025 and IIPF 2025
+_with Claus Thustrup Kreiner_
+
+<div class="entry-meta">
+  <p><strong>Presented at</strong> CEPR Public Economics 2026, CESifo Public Economics Conference 2025 and IIPF 2025</p>
+</div>
 </div>
 
 <div class="entry" markdown="1">
 **Tax Administration and VAT Neutrality: Theory and Evidence from Kenya** <br>
 _with Cyrus Mutuku and Bjørn Bo Sørensen_
+
+<div class="entry-meta">
+  <p><strong>Presented at</strong> NCDE 2026</p>
+</div>
 
 <details>
 <summary><strong>Abstract (click to expand)</strong></summary>
@@ -63,9 +70,12 @@ Production efficiency is a central rationale for the VAT, but it is unclear whet
 
 <div class="entry" markdown="1">
 **A Worker's Worth**<br>
-_with Paolo Falco and Andreas Menzel_<br>
-Recipient of IGC grant ETH-24324 <br>
-Field work in progress
+_with Paolo Falco and Andreas Menzel_
+
+<div class="entry-meta">
+  <p><strong>Recipient of IGC grant</strong> ETH-24324</p>
+  <p>Field work in progress</p>
+</div>
 </div>
 
 <div class="entry" markdown="1">
