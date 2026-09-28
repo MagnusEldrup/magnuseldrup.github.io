@@ -30,12 +30,15 @@ Before embarking on my PhD I completed the Msc. in Economics for Development at 
 
 <div class="entry" markdown="1">
 **[Horizontal Inequality in Optimal Taxation: Evidence from a Development Context](https://www.econ.ku.dk/cebi/publikationer/working-papers/CEBI_WP_19-26.pdf)** <br>
-_Job Market Paper_ <br>
-Presented at CSAE 2026, KIEL-CEPR AEDC 2025 and NPPS 2025 <br>
-Recipient of grants from the Nordic Tax Research Council, The Structural Transformation and Economic Growth (STEG) programme, and the Ministry of Foreign Affairs of Denmark (DANIDA)
+_Job Market Paper_
+
+<div class="entry-meta">
+  <p><strong>Presented at</strong> CSAE 2026, KIEL-CEPR AEDC 2025 and NPPS 2025</p>
+  <p><strong>Recipient of grants from</strong> the Nordic Tax Research Council, The Structural Transformation and Economic Growth (STEG) programme, and the Ministry of Foreign Affairs of Denmark (DANIDA)</p>
+</div>
 
 <details>
-<summary><strong>Expand Abstract</strong> &middot; <a href="https://www.econ.ku.dk/cebi/publikationer/working-papers/CEBI_WP_19-26.pdf">Working Paper</a></summary>
+<summary><strong>Abstract (click to expand)</strong> &middot; <a href="https://www.econ.ku.dk/cebi/publikationer/working-papers/CEBI_WP_19-26.pdf">Working Paper</a></summary>
 Exemptions are a key feature of income tax systems in developing countries, yet standard optimal tax models cannot explain them. By assuming full compliance, these models ignore horizontal inequality between formal and informal workers, understating the social cost of taxing the former. Extending the optimal tax framework, I incorporate informality and horizontal inequality aversion. I conduct a survey experiment in Kenya, finding that respondents place substantially higher welfare weight on formal taxpayers than otherwise identical informal workers. Combining these empirical preferences with administrative tax data yields prescriptions of high exemption thresholds, a result alternative explanations such as extensive margin responses or administrative costs cannot rationalize.
 </details>
 </div>
@@ -67,7 +70,7 @@ Field work in progress
 
 <div class="entry" markdown="1">
 **Can AI Predict Top Five? Gender Bias in LLM Forecasts of Academic Excellence**<br>
-_with Paolo Falco andSarah Zaccagni_<br>
+_with Paolo Falco and Sarah Zaccagni_<br>
 </div>
 
 ## Policy Work

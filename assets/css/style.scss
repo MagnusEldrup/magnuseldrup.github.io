@@ -132,6 +132,22 @@ body {
   font-weight: 600;
 }
 
+.entry-meta {
+  margin: 12px 0 16px;
+  font-size: 0.9em;
+  line-height: 1.55;
+}
+.entry-meta p {
+  margin: 0;
+}
+.entry-meta p + p {
+  margin-top: 10px;
+}
+.entry-meta strong {
+  font-family: inherit;
+  color: #555;
+}
+
 /* ---- Abstract toggle + expanded highlight ---- */
 .markdown-body details summary {
   font-size: 0.85rem;
