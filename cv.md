@@ -9,4 +9,4 @@ permalink: /cv/
 # Curriculum Vitae
 
 Download:
-[CV (PDF)](/assets/cv/MagnusEldrup_CV2025.pdf)
+[CV (PDF)](/assets/cv/CV_MagnusEldrup_Academic_2026.pdf)

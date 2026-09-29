@@ -14,9 +14,9 @@ title: "Magnus Eldrup"
 
 <p style="line-height:1.9; text-align:left;">
 <strong>Email:</strong> mel@econ.ku.dk <br>
-<strong>Affiliation:</strong> Department of Economics, University of Copenhagen <br>
+<strong>Affiliation:</strong> University of Copenhagen <br>
 <strong>Fields:</strong> Public economics, development, taxation <br>
-<strong>CV:</strong> <a href="{{ site.baseurl }}/assets/cv/MagnusEldrup_CV2025.pdf">PDF</a> <br>
+<strong>CV:</strong> <a href="{{ site.baseurl }}/assets/cv/CV_MagnusEldrup_Academic_2026.pdf">PDF</a> <br>
 </p>
 
 <!-- Clear float before long description -->
