@@ -83,6 +83,11 @@ _with Paolo Falco and Andreas Menzel_
 _with Paolo Falco and Sarah Zaccagni_<br>
 </div>
 
+<div class="entry" markdown="1">
+**Optimal Tax Enforcement in Low-Income Countries**<br>
+_with David Henning and Joseph Okello Ayo_
+</div>
+
 ## Policy Work
 
 <div class="entry" markdown="1">
