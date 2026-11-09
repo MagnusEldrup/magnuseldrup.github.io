@@ -33,20 +33,21 @@
     { key: 'kenya', color: 'ink', bold: true, tip: 'Kenya 2021' },
     { key: 't2020', color: 'muted', kind: 'vline', style: 'dotted', reveal: 'fade' },
     { key: 'ha_ci', color: 'ha', kind: 'band', group: 'ha' },
-    { key: 'naive', color: 'naive', tip: 'Naïve planner' },
-    { key: 'hu', color: 'hu', tip: 'Horizontally utilitarian' },
-    { key: 'hu_ext', color: 'hu', style: 'dashed', group: 'hu_var', tip: 'Utilitarian, ext. margin & admin' },
-    { key: 'hu_high', color: 'hu', style: 'dotted', group: 'hu_var', tip: 'Utilitarian, high ext. & admin' },
-    { key: 'ha_ext', color: 'ha', style: 'dashed', group: 'ha_var', tip: 'Averse, ext. margin & admin' },
-    { key: 'ha_high', color: 'ha', style: 'dotted', group: 'ha_var', tip: 'Averse, high ext. & admin' },
-    { key: 'ha', color: 'ha', bold: true, group: 'ha', tip: 'Horizontally averse' },
+    { key: 'naive', color: 'naive', tip: 'Standard model' },
+    { key: 'hu', color: 'hu', tip: 'Informality only' },
+    { key: 'hu_ext', color: 'hu', style: 'dashed', group: 'hu_var', tip: 'Informality only, ext. margin & admin' },
+    { key: 'hu_high', color: 'hu', style: 'dotted', group: 'hu_var', tip: 'Informality only, high ext. & admin' },
+    { key: 'ha_ext', color: 'ha', style: 'dashed', group: 'ha_var', tip: 'Ineq. aversion, ext. margin & admin' },
+    { key: 'ha_high', color: 'ha', style: 'dotted', group: 'ha_var', tip: 'Ineq. aversion, high ext. & admin' },
+    { key: 'ha', color: 'ha', bold: true, group: 'ha', tip: 'Horizontal inequality aversion' },
   ];
 
+  // Plain names first, the paper's planner names in brackets.
   const LEGEND = [
     { key: 'kenya', label: 'Tax schedule, Kenya 2021', color: 'ink' },
-    { key: 'naive', label: 'Naïve planner', color: 'naive' },
-    { key: 'hu', label: 'Horizontally utilitarian planner', color: 'hu' },
-    { key: 'ha', label: 'Horizontally averse planner (empirical weights)', color: 'ha' },
+    { key: 'naive', label: 'Standard model (naïve planner)', color: 'naive' },
+    { key: 'hu', label: 'Informality only (horizontally utilitarian planner)', color: 'hu' },
+    { key: 'ha', label: 'With horizontal inequality aversion (empirical weights)', color: 'ha' },
     { key: 'ha_ci', label: '95% CI', color: 'ha', kind: 'band' },
     { key: 't2020', label: 'Exemption threshold, 2020', color: 'muted', kind: 'vline' },
     { key: 'hu_ext', label: 'w. extensive margin & admin cost', color: 'muted', style: 'dashed' },
@@ -63,17 +64,17 @@
     {
       show: { kenya: 1, naive: 1 },
       notes: ['naive'],
-      desc: "Added: the naïve planner's optimal schedule, with positive marginal rates from the first shilling, peaking at about 42%.",
+      desc: "Added: the standard model's optimal schedule (naïve planner), with positive marginal rates from the first shilling, peaking at about 42%.",
     },
     {
       show: { kenya: 1, naive: DIM, hu: 1 },
       notes: ['hu'],
-      desc: "Added: the horizontally utilitarian planner, with marginal rates of 70 to 75% at the bottom, even further from Kenya's schedule.",
+      desc: "Added: the schedule accounting for informality only (horizontally utilitarian planner), with marginal rates of 70 to 75% at the bottom, even further from Kenya's schedule.",
     },
     {
       show: { kenya: 1, naive: DIM, hu: DIM, ha_ci: 1, ha: 1, t2020: 1 },
       notes: ['ha', 't2020'],
-      desc: "Added: the horizontally averse planner using empirically measured social preferences over horizontal inequality, with a zero marginal rate up to about 155,000 Ksh, close to Kenya's 2020 threshold of about 162,000 Ksh.",
+      desc: "Added: the schedule with horizontal inequality aversion, using empirically measured welfare weights, with a zero marginal rate up to about 155,000 Ksh, close to Kenya's 2020 threshold of about 162,000 Ksh.",
     },
     {
       show: { kenya: 1, hu: DIM, ha: DIM, t2020: 1, hu_ext: 1, hu_high: 1, ha_ext: 1, ha_high: 1 },
@@ -97,13 +98,13 @@
           span(g, L.x(0), L.x(m.kenya2021), y, 'ink');
           return {
             x: (L.x(0) + L.x(m.kenya2021)) / 2, y: y - 10, anchor: 'middle', valign: 'bottom',
-            lines: [[`Exemption: first ${k(m.kenya2021)} Ksh/yr`, true], ['covers 80% of workers']],
+            lines: [[`Exemption: first ${k(m.kenya2021)} Ksh`, true], ['covers 80% of workers']],
           };
         },
       },
       naive: {
         color: 'ink2',
-        callout: 'No exemption: the naïve planner taxes from the first shilling.',
+        callout: 'No exemption: the standard model taxes from the first shilling.',
         draw(g) {
           const tx = L.x(72000);
           const ty = L.y(0.6);
@@ -157,7 +158,8 @@
           span(g, L.x(0), L.x(m.hu_high), y, 'hu');
           return {
             x: L.x(m.hu_high) + 8, y: y + 4, anchor: 'start', valign: 'bottom',
-            lines: [['On their own:', true], ['exemptions of only'], [`${Math.round(m.hu_ext / 1000)}k–${Math.round(m.hu_high / 1000)}k Ksh`]],
+            // Narrow enough to clear the averse curves' rise at ~155,000 Ksh.
+            lines: [['On their own:', true], ['exemptions of'], [`${Math.round(m.hu_ext / 1000)}k–${Math.round(m.hu_high / 1000)}k Ksh`]],
           };
         },
       },

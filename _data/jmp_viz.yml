@@ -3,13 +3,13 @@
 # arrows, labels) is defined in assets/js/jmp-viz.js (STEPS and makeNotes), so
 # keep the five steps in the same order in both places.
 # HTML is allowed in `headline`, `note`, `source` and `definition`.
-#   note:       optional line shown next to the source (e.g. an intuition)
+#   note:       optional line below the plot, above the source (intuition, finding)
 #   definition: optional boxed definition shown on the chart for that step:
 #               title, text (general definition), paper ("In my paper: ...")
 steps:
   - short: Exemptions in practice
     headline: >-
-      Developing countries have large tax exemptions, routinely covering
+      Developing countries have large income tax exemptions, routinely set
       above the 80th percentile of earnings.
     source: >-
       Source: <a href="https://doi.org/10.1257/aer.20191528">Jensen (2022)</a>,
@@ -17,6 +17,10 @@ steps:
 
   - short: Standard models
     headline: Standard optimal tax models prescribe no tax exemptions.
+    note: >-
+      <strong>Intuition:</strong> These models assume full compliance. If every
+      worker pays their taxes, the government can always do better by taxing a
+      broad base than by leaving any part of earnings untaxed.
     source: >-
       See <a href="https://doi.org/10.2307/2297322">Sadka (1976)</a>;
       <a href="https://doi.org/10.2307/2297292">Seade (1982)</a>;
@@ -24,36 +28,46 @@ steps:
 
   - short: Informality alone
     headline: >-
-      Accounting for informality on its own only moves prescribed policy
-      further away from the observed reality in developing countries.
+      Accounting for informality alone moves the prescription even further
+      from reality: marginal rates at the bottom rise to 70–75%.
     note: >-
-      <strong>Intuition:</strong> This is similar to a forced tagged tax system
-      where the planner chooses only to tax the formal workers. Since these
-      workers have higher incomes, higher tax rates are merited.
+      <strong>Intuition:</strong> Informality works like a tag: only formal
+      workers can be taxed. Since they have higher incomes, higher tax rates
+      are merited.
     source: >-
       Source: Eldrup (2026), <a href="/assets/horizontal-inequality.pdf">Figure 4</a>.
 
   - short: Horizontal inequality
     headline: >-
-      In my paper, I account for the fact that taxation in high-informality
-      economies leads to <em>horizontal inequality</em>. I measure social
-      preferences accounting for this horizontal inequality directly.
-      Incorporating these preferences rationalizes sizeable exemptions.
+      In my paper, I account for the <em>horizontal inequality</em> that
+      taxation creates in high-informality economies, and measure directly how
+      much people care about it. With these preferences, sizeable exemptions
+      become optimal.
     definition:
       title: Horizontal inequality
       text: The unequal treatment of equals (Musgrave, 1990).
       paper: >-
         workers with the same skill who face different tax liabilities because
         one works formally and the other informally.
+    note: >-
+      <strong>Finding:</strong> In my survey experiment in Kenya, the median
+      respondent places more than four times as much welfare weight on a formal
+      taxpayer as on an informal worker with the same gross income.
     source: >-
       Source: Eldrup (2026), <a href="/assets/horizontal-inequality.pdf">Figure 4</a>.
       Shaded band: 95% confidence interval.
 
   - short: Admin costs and extensive margin
     headline: >-
-      While administrative costs and extensive-margin responses increase the
-      size of the prescribed exemption somewhat, they cannot, by themselves,
-      rationalize sizeable exemptions.
+      While administrative costs and extensive-margin responses (shifts into
+      informality) increase the size of the prescribed exemption somewhat, they
+      cannot, by themselves, rationalize sizeable exemptions.
+    note: >-
+      <strong>Intuition:</strong> Raising the exemption removes the tax on the
+      first shillings of every worker above the threshold, not only on those it
+      exempts. Without horizontal inequality aversion, the administrative
+      savings and smaller shifts into informality are not worth that revenue,
+      so only small exemptions are optimal.
     source: >-
       Source: Eldrup (2026), <a href="/assets/horizontal-inequality.pdf">Figure 5</a>.
       Dashed: participation elasticity 0.5 and admin cost of 5,000 Ksh per taxpayer.
