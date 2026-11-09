@@ -18,7 +18,7 @@
 
   const NS = 'http://www.w3.org/2000/svg';
   const X_MAX = 700000;
-  const Y_MAX = 0.8;
+  const Y_MAX = 1.0;         // as in the paper's figures; leaves the top for the definition box
   const DIM = 0.28;
   const DRAW_MS = 1150;      // left-to-right reveal of a curve
   const STAGGER_MS = 300;    // gap between curve groups drawn in the same step
@@ -73,7 +73,7 @@
     {
       show: { kenya: 1, naive: DIM, hu: DIM, ha_ci: 1, ha: 1, t2020: 1 },
       notes: ['ha', 't2020'],
-      desc: "Added: the horizontally averse planner using empirical welfare weights, with a zero marginal rate up to about 155,000 Ksh, close to Kenya's 2020 threshold of about 162,000 Ksh.",
+      desc: "Added: the horizontally averse planner using empirically measured social preferences over horizontal inequality, with a zero marginal rate up to about 155,000 Ksh, close to Kenya's 2020 threshold of about 162,000 Ksh.",
     },
     {
       show: { kenya: 1, hu: DIM, ha: DIM, t2020: 1, hu_ext: 1, hu_high: 1, ha_ext: 1, ha_high: 1 },
@@ -132,7 +132,7 @@
           span(g, L.x(0), L.x(m.ha), y, 'ha');
           return {
             x: (L.x(0) + L.x(m.ha)) / 2, y: y - 10, anchor: 'middle', valign: 'bottom',
-            lines: [['Prescribed exemption', true], [`≈ ${k(m.ha)} Ksh/yr`]],
+            lines: [['Prescribed', true], ['exemption', true], [`≈ ${k(m.ha)} Ksh`]],
           };
         },
       },
@@ -141,7 +141,12 @@
         dotted: true,
         callout: `Dotted line: Kenya's 2020 exemption threshold, about ${k(m.t2020)} Ksh a year.`,
         draw() {
-          return { x: L.x(m.t2020) + 8, y: L.m.t + 2, anchor: 'start', valign: 'top', lines: [["Kenya's 2020 threshold", true], [`≈ ${k(m.t2020)} Ksh/yr`]] };
+          // Bottom right of the dotted line, level with the prescribed-exemption
+          // label on its left, so the two numbers read side by side.
+          return {
+            x: L.x(m.t2020) + 8, y: L.y(0.075) - 10, anchor: 'start', valign: 'bottom',
+            lines: [["Kenya's 2020", true], ['threshold', true], [`≈ ${k(m.t2020)} Ksh`]],
+          };
         },
       },
       frictions: {
@@ -163,21 +168,20 @@
 
   const $ = (sel) => root.querySelector(sel);
   const $$ = (sel) => Array.from(root.querySelectorAll(sel));
-  const toggle = $('.jv-toggle');
+  // The toggle lives on the card's link line, outside the panel.
+  const toggle = document.querySelector('[data-jv-toggle]');
   const collapse = $('.jv-collapse');
   const panel = $('.jv-panel');
   const chartEl = $('.jv-chart');
   const legendEl = $('.jv-legend');
   const calloutsEl = $('.jv-callouts');
-  const headlines = $$('.jv-headline');
+  const texts = $$('.jv-text');
   const sources = $$('.jv-source');
+  const defs = $$('.jv-def');
   const pips = $$('.jv-pip');
   const prevBtn = $('.jv-prev');
   const nextBtn = $('.jv-next');
-  const stepNum = $('.jv-step-num');
   const live = $('.jv-sr');
-  const hint = $('.jv-toggle-hint');
-  const hintClosed = hint ? hint.textContent : '';
   const uid = 'jv' + Math.random().toString(36).slice(2, 7);
 
   let D = null;              // data
@@ -253,7 +257,7 @@
   function layout(w) {
     const narrow = w < 470;
     const m = { l: narrow ? 34 : 40, r: narrow ? 12 : 24, t: 30, b: 44 };
-    const h = Math.round(clamp(w * (narrow ? 0.98 : 0.6), 300, 430));
+    const h = Math.round(clamp(w * (narrow ? 1.02 : 0.65), 310, 460));
     const pw = w - m.l - m.r;
     const ph = h - m.t - m.b;
     return {
@@ -276,12 +280,12 @@
 
     svgRoot = svg('svg', { viewBox: `0 0 ${L.w} ${L.h}`, width: L.w, height: L.h, role: 'img', 'aria-labelledby': uid + '-t' });
     titleEl = svg('title', { id: uid + '-t' }, svgRoot);
-    const defs = svg('defs', {}, svgRoot);
+    const svgDefs = svg('defs', {}, svgRoot);
     chartEl.appendChild(svgRoot);
 
     // Grid, ticks and axis titles
     const grid = svg('g', { class: 'jv-grid' }, svgRoot);
-    for (let i = 0; i <= 4; i++) {
+    for (let i = 0; i <= Math.round(Y_MAX / 0.2); i++) {
       const v = i * 0.2;
       const y = L.y(v);
       if (i) svg('line', { x1: L.m.l, x2: L.m.l + L.pw, y1: y, y2: y }, grid);
@@ -301,7 +305,7 @@
     // Series, each revealed through its own clip rectangle
     const plot = svg('g', { class: 'jv-plot' }, svgRoot);
     SERIES.forEach((s) => {
-      const clip = svg('clipPath', { id: `${uid}-c-${s.key}` }, defs);
+      const clip = svg('clipPath', { id: `${uid}-c-${s.key}` }, svgDefs);
       const rect = svg('rect', { x: L.m.l - 6, y: 0, height: L.h, width: 0 }, clip);
       const g = svg('g', { class: 'jv-series', 'clip-path': `url(#${uid}-c-${s.key})` }, plot);
       const cls = (s.style ? ' jv-' + s.style : '') + (s.bold ? ' jv-bold' : '');
@@ -328,6 +332,7 @@
       noteNodes[key] = g;
     });
     buildCallouts(notes);
+    placeDefs();
 
     // Hover read-out
     cross = svg('line', { class: 'jv-cross', y1: L.m.t, y2: L.y(0), x1: 0, x2: 0 }, svgRoot);
@@ -420,8 +425,11 @@
   }
 
   // Reserve the legend's tallest height so the chart never shifts between steps.
+  // On narrow screens content below the chart may move instead: a reserved
+  // block would leave large gaps there.
   function sizeLegend() {
     legendEl.style.minHeight = '';
+    if (L && L.narrow) return;
     let max = 0;
     STEPS.forEach((st) => {
       LEGEND.forEach((it) => { legendKeys[it.key].hidden = !st.show[it.key]; });
@@ -449,6 +457,27 @@
         div.appendChild(p);
       });
       calloutsEl.appendChild(div);
+    });
+  }
+
+  // Definition boxes: over the empty top-right of the plot on wide screens,
+  // with their step's callouts under the chart on narrow ones.
+  function placeDefs() {
+    defs.forEach((d) => {
+      const i = +d.dataset.step;
+      d.classList.remove('is-overlay', 'is-on');
+      d.removeAttribute('style');
+      if (L.narrow) {
+        if (calloutsEl.children[i]) calloutsEl.children[i].appendChild(d);
+        d.removeAttribute('aria-hidden');
+      } else {
+        d.classList.add('is-overlay');
+        d.style.width = Math.min(Math.round(L.pw * 0.5), 330) + 'px';
+        d.style.top = L.m.t + 4 + 'px';
+        d.style.right = L.m.r + 4 + 'px';
+        d.setAttribute('aria-hidden', 'true');
+        chartEl.appendChild(d);
+      }
     });
   }
 
@@ -495,6 +524,13 @@
       noteNodes[key].classList.toggle('is-on', on);
       noteNodes[key].style.transitionDelay = on ? noteDelay + 'ms' : '0ms';
     });
+    defs.forEach((d) => {
+      if (!d.classList.contains('is-overlay')) return;
+      const on = +d.dataset.step === n;
+      d.classList.toggle('is-on', on);
+      d.setAttribute('aria-hidden', on ? 'false' : 'true');
+      d.style.transitionDelay = on ? noteDelay + 'ms' : '0ms';
+    });
     titleEl.textContent = step.desc;
   }
 
@@ -520,7 +556,7 @@
       el.classList.toggle('is-active', on);
       el.setAttribute('aria-hidden', on ? 'false' : 'true');
     });
-    activate(headlines);
+    activate(texts);
     activate(sources);
     if (!calloutsEl.hidden) activate(Array.from(calloutsEl.children));
     pips.forEach((p, i) => {
@@ -528,12 +564,12 @@
       p.classList.toggle('is-done', i < n);
       if (i === n) p.setAttribute('aria-current', 'step'); else p.removeAttribute('aria-current');
     });
-    stepNum.textContent = n + 1;
     prevBtn.disabled = n === 0;
     const last = n === STEPS.length - 1;
     nextBtn.innerHTML = last ? 'Start over &#8635;' : 'Next &rarr;';
     nextBtn.setAttribute('aria-label', last ? 'Start over from step 1' : 'Next step');
-    const text = headlines[n] ? headlines[n].textContent.trim() : '';
+    const headline = texts[n] && texts[n].querySelector('.jv-headline');
+    const text = headline ? headline.textContent.trim() : '';
     live.textContent = `Step ${n + 1} of ${STEPS.length}. ${text} ${STEPS[n].desc}`;
   }
 
@@ -567,6 +603,7 @@
       setClip(s.key, 0);
     });
     Object.values(noteNodes).forEach((g) => g.classList.remove('is-on'));
+    defs.forEach((d) => { if (d.classList.contains('is-overlay')) d.classList.remove('is-on'); });
     LEGEND.forEach((it) => { legendKeys[it.key].hidden = true; });
     void panel.offsetWidth;
     panel.classList.remove('jv-instant');
@@ -641,8 +678,7 @@
   function open(startStep = 0) {
     isOpen = true;
     root.classList.add('is-open');
-    toggle.setAttribute('aria-expanded', 'true');
-    if (hint) hint.textContent = '(click to hide)';
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
     collapse.removeAttribute('inert');
     if (!built) chartEl.style.minHeight = layout(Math.round(chartEl.clientWidth) || 600).h + 'px';
     const fonts = document.fonts ? document.fonts.ready : Promise.resolve();
@@ -665,8 +701,7 @@
   function close() {
     isOpen = false;
     root.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
-    if (hint) hint.textContent = hintClosed;
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
     collapse.setAttribute('inert', '');
     hideTip();
   }
@@ -674,9 +709,16 @@
   /* ---------- Wiring ---------- */
 
   buildLegend();
-  toggle.addEventListener('click', () => (isOpen ? close() : open(0)));
-  toggle.addEventListener('pointerenter', () => { load().catch(() => {}); }, { once: true });
-  toggle.addEventListener('focus', () => { load().catch(() => {}); }, { once: true });
+  if (toggle) {
+    toggle.addEventListener('click', (e) => {
+      // The toggle sits inside the abstract's <summary>: don't open the abstract too.
+      e.preventDefault();
+      e.stopPropagation();
+      if (isOpen) close(); else open(0);
+    });
+    toggle.addEventListener('pointerenter', () => { load().catch(() => {}); }, { once: true });
+    toggle.addEventListener('focus', () => { load().catch(() => {}); }, { once: true });
+  }
   prevBtn.addEventListener('click', () => go(cur - 1));
   nextBtn.addEventListener('click', () => {
     if (cur === STEPS.length - 1) { reset(); go(0); } else go(cur + 1);
@@ -702,17 +744,9 @@
     }).observe(chartEl);
   }
 
-  // A gentle pulse the first time the button scrolls into view.
-  if (!reduceMotion && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      if (!entries[0].isIntersecting) return;
-      io.disconnect();
-      setTimeout(() => { if (!isOpen) toggle.classList.add('jv-attn'); }, 500);
-    }, { threshold: 1 });
-    io.observe(toggle);
-    toggle.addEventListener('animationend', (e) => { if (e.animationName === 'jv-ring') toggle.classList.remove('jv-attn'); });
-  }
-
+  // Show the toggle only once the script is running.
+  const toggleWrap = toggle && toggle.closest('.jv-toggle-wrap');
+  if (toggleWrap) toggleWrap.hidden = false;
   root.classList.add('is-ready');
 
   // Deep links: #jmp-viz opens the panel, #jmp-viz-3 opens it at step 3.

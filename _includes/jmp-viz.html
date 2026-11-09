@@ -1,5 +1,6 @@
 {%- comment -%}
   "Main results, visualized": click-through animation of the JMP's main results.
+  The button is _includes/jmp-viz-toggle.html (on the card's link line).
   Text: _data/jmp_viz.yml   Behaviour: assets/js/jmp-viz.js
   Data: assets/data/jmp-curves.json (built by _viz/build_curves.py)
   Styles: the "JMP visualization" block at the end of assets/css/style.scss
@@ -7,19 +8,12 @@
 {%- endcomment -%}
 {%- assign steps = site.data.jmp_viz.steps -%}
 <div class="jv" id="jmp-viz" data-jv data-src="{{ '/assets/data/jmp-curves.json' | relative_url }}" markdown="0">
-<button type="button" class="jv-toggle" aria-expanded="false" aria-controls="jmp-viz-panel">
-<svg class="jv-toggle-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path class="jv-toggle-axis" d="M2.5 16.5h15"/><path class="jv-toggle-line" d="M3 13.5l4-4.5 3.5 2.5L16.5 4.5"/><circle cx="16.5" cy="4.5" r="1.7"/></svg>
-<span class="jv-toggle-label">Main results, visualized</span>
-<span class="jv-toggle-hint">(click to expand)</span>
-<svg class="jv-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5l3 3 3-3"/></svg>
-</button>
 <div class="jv-collapse" id="jmp-viz-panel" inert>
 <div class="jv-collapse-inner">
 <div class="jv-panel" role="group" aria-label="Main results of the job market paper, step by step">
-<p class="jv-eyebrow">Step <span class="jv-step-num">1</span> of {{ steps.size }}</p>
-<div class="jv-stack jv-headlines">
+<div class="jv-stack jv-texts">
 {%- for s in steps -%}
-<p class="jv-headline" data-step="{{ forloop.index0 }}" aria-hidden="true">{{ s.headline }}</p>
+<div class="jv-text" data-step="{{ forloop.index0 }}" aria-hidden="true"><p class="jv-eyebrow">Step {{ forloop.index }} of {{ steps.size }}</p><p class="jv-headline">{{ s.headline }}</p></div>
 {%- endfor -%}
 </div>
 <div class="jv-chart"></div>
@@ -27,9 +21,14 @@
 <div class="jv-legend" aria-hidden="true"></div>
 <div class="jv-stack jv-sources">
 {%- for s in steps -%}
-<p class="jv-source" data-step="{{ forloop.index0 }}" aria-hidden="true">{{ s.source }}</p>
+<div class="jv-source" data-step="{{ forloop.index0 }}" aria-hidden="true">{%- if s.note -%}<p class="jv-intuition">{{ s.note }}</p>{%- endif -%}<p>{{ s.source }}</p></div>
 {%- endfor -%}
 </div>
+{%- for s in steps -%}
+{%- if s.definition -%}
+<aside class="jv-def" data-step="{{ forloop.index0 }}"><p class="jv-def-title"><strong>Definition.</strong> {{ s.definition.title }}</p><p>{{ s.definition.body }}</p></aside>
+{%- endif -%}
+{%- endfor -%}
 <div class="jv-foot">
 <div class="jv-pips" role="group" aria-label="Go to step">
 {%- for s in steps -%}

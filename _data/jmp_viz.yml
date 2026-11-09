@@ -2,7 +2,9 @@
 # Rendered by _includes/jmp-viz.html. What the chart shows in each step (curves,
 # arrows, labels) is defined in assets/js/jmp-viz.js (STEPS and makeNotes), so
 # keep the five steps in the same order in both places.
-# HTML is allowed in `headline` and `source`.
+# HTML is allowed in `headline`, `note`, `source` and `definition`.
+#   note:       optional line shown next to the source (e.g. an intuition)
+#   definition: optional boxed definition shown on the chart for that step
 steps:
   - short: Exemptions in practice
     headline: >-
@@ -23,14 +25,25 @@ steps:
     headline: >-
       Accounting for informality on its own only moves prescribed policy
       further away from the observed reality in developing countries.
+    note: >-
+      <strong>Intuition:</strong> This is similar to a forced tagged tax system
+      where the planner chooses only to tax the formal workers. Since these
+      workers have higher incomes, higher tax rates are merited.
     source: >-
       Source: Eldrup (2026), <a href="/assets/horizontal-inequality.pdf">Figure 4</a>.
 
   - short: Horizontal inequality
     headline: >-
       In my paper, I account for the fact that taxation in high-informality
-      economies leads to <em>horizontal inequality</em>. Measuring this
-      directly rationalizes sizeable exemptions.
+      economies leads to <em>horizontal inequality</em>. I measure social
+      preferences accounting for this horizontal inequality directly.
+      Incorporating these preferences rationalizes sizeable exemptions.
+    definition:
+      title: Horizontal inequality
+      body: >-
+        The unequal treatment of equals (Musgrave, 1990). In my paper: workers
+        with the same skill who face different tax liabilities because one
+        works formally and the other informally.
     source: >-
       Source: Eldrup (2026), <a href="/assets/horizontal-inequality.pdf">Figure 4</a>.
       Shaded band: 95% confidence interval.

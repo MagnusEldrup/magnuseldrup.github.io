@@ -179,79 +179,71 @@ body {
 }
 
 /* ---- JMP visualization ("Main results, visualized") ----
-   Markup: _includes/jmp-viz.html · script: assets/js/jmp-viz.js
+   Toggle: _includes/jmp-viz-toggle.html (on the card's link line)
+   Panel:  _includes/jmp-viz.html · script: assets/js/jmp-viz.js
    The three planner colors were checked together for color-blind separation
-   and >= 3:1 contrast against $sheet; re-check if you change them. */
-.jv {
+   and >= 3:1 contrast against $tint-strong (the panel) and $sheet; re-check
+   if you change them. */
+.jv,
+.jv-toggle {
   --jv-accent: #{$accent};
   --jv-accent-dark: #{darken($accent, 9%)};
   --jv-accent-border: #{$accent-border};
   --jv-tint: #{$tint-strong};
+  --jv-tint-deep: #{darken($tint-strong, 4%)};
   --jv-sheet: #{$sheet};
   --jv-ink: #2b2b2b;
   --jv-ink-2: #5d5654;
-  --jv-muted: #8a8280;
-  --jv-grid: #ece3e1;
-  --jv-axis: #cbc1bf;
+  --jv-muted: #857c7a;
+  --jv-grid: #e6d6d3;
+  --jv-axis: #c3b5b2;
   --jv-naive: #2e6a9e;          // naive planner: slate blue
-  --jv-hu: #bb8211;             // horizontally utilitarian: ochre
+  --jv-hu: #a88300;             // horizontally utilitarian: ochre
   --jv-ha: #a34b41;             // horizontally averse (the result): brick
-  margin: 4px 0 12px;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
+.jv { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
 
-/* Toggle button: hidden until the script has loaded */
+/* Toggle: a small chip on the same line as the abstract and paper links.
+   Its wrapper stays hidden until the script has loaded. */
+.jv-toggle-wrap[hidden] { display: none; }
 .jv-toggle {
-  display: none;
+  display: inline-flex;
   align-items: center;
-  gap: 0.55em;
-  padding: 0.62em 1.1em 0.62em 0.95em;
-  border: 0;
+  gap: 0.35em;
+  margin: 0;
+  padding: 0.08em 0.6em 0.08em 0.5em;
+  border: 1px solid var(--jv-accent-border);
   border-radius: 999px;
-  background: var(--jv-accent);
-  color: #fff;
-  font: 600 0.86rem/1.2 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  letter-spacing: 0.005em;
+  background: var(--jv-tint);
+  color: var(--jv-accent);
+  font: 600 1em/1.45 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  vertical-align: baseline;
   cursor: pointer;
-  box-shadow: 0 1px 2px rgba(70, 30, 25, 0.18), 0 6px 16px -8px rgba(153, 80, 74, 0.7);
-  transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
-.jv.is-ready .jv-toggle { display: inline-flex; }
-.jv-toggle:hover {
-  background: var(--jv-accent-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(70, 30, 25, 0.2), 0 10px 22px -10px rgba(153, 80, 74, 0.85);
-}
-.jv-toggle:active { transform: translateY(0) scale(0.985); }
-.jv-toggle:focus-visible { outline: 2px solid var(--jv-accent); outline-offset: 3px; }
-.jv-toggle-hint { font-weight: 500; opacity: 0.82; }
+.jv-toggle:hover { background: var(--jv-tint-deep); border-color: var(--jv-accent); }
+.jv-toggle:focus-visible { outline: 2px solid var(--jv-accent); outline-offset: 2px; }
 .jv-toggle-icon, .jv-chevron { flex: none; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
-.jv-toggle-icon { width: 1.2em; height: 1.2em; stroke-width: 1.7; }
-.jv-toggle-icon circle { fill: currentColor; stroke: none; }
-.jv-toggle-axis { opacity: 0.55; }
+.jv-toggle-icon { width: 1.05em; height: 1.05em; stroke-width: 1.9; }
 .jv-toggle-line { stroke-dasharray: 22; stroke-dashoffset: 0; }
 .jv-toggle:hover .jv-toggle-line { animation: jv-icon-draw 0.7s ease; }
-.jv-chevron { width: 0.85em; height: 0.85em; stroke-width: 1.8; margin-left: -0.1em; transition: transform 0.35s ease; }
-.jv.is-open .jv-chevron { transform: rotate(180deg); }
-.jv-toggle.jv-attn { animation: jv-ring 1.5s ease-out 2; }
+.jv-chevron { width: 0.8em; height: 0.8em; stroke-width: 1.8; transition: transform 0.35s ease; }
+.jv-toggle[aria-expanded="true"] .jv-chevron { transform: rotate(180deg); }
 @keyframes jv-icon-draw { from { stroke-dashoffset: 22; } to { stroke-dashoffset: 0; } }
-@keyframes jv-ring {
-  0%   { box-shadow: 0 0 0 0 rgba(153, 80, 74, 0.45), 0 6px 16px -8px rgba(153, 80, 74, 0.7); }
-  100% { box-shadow: 0 0 0 12px rgba(153, 80, 74, 0), 0 6px 16px -8px rgba(153, 80, 74, 0.7); }
-}
 
-/* Expanding panel. The negative margin gives focus rings and label halos room
-   inside the overflow clip without changing the content width. */
+/* Expanding panel, on the same tint as the open abstract */
 .jv-collapse {
   display: grid;
   grid-template-rows: 0fr;
-  margin: 0 -12px;
   transition: grid-template-rows 0.55s cubic-bezier(0.2, 0.75, 0.25, 1);
 }
 .jv.is-open .jv-collapse { grid-template-rows: 1fr; }
 .jv-collapse-inner { min-height: 0; overflow: hidden; }
 .jv-panel {
-  padding: 18px 12px 8px;
+  margin: 10px 0 4px;
+  padding: 14px 16px 12px;
+  border-radius: 6px;
+  background-color: var(--jv-tint);
   color: var(--jv-ink);
   text-align: left;
   opacity: 0;
@@ -261,16 +253,9 @@ body {
 .jv.is-open .jv-panel { opacity: 1; transform: none; transition-delay: 0.08s; }
 .markdown-body .jv-panel p { margin: 0; text-align: left; }
 
-.jv-eyebrow {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--jv-accent);
-}
-
 /* Per-step text is stacked in one grid cell, so the tallest step sets the
-   height and nothing below jumps when the text changes. */
+   height and nothing below jumps when the text changes. Step text sits at
+   the bottom of its cell, right above the chart it describes. */
 .jv-stack { display: grid; }
 .jv-stack > * {
   grid-area: 1 / 1;
@@ -283,26 +268,75 @@ body {
   visibility: visible;
   transition: opacity 0.45s ease 0.12s, visibility 0s;
 }
-.jv-headlines { margin: 6px 0 10px; }
+.jv-texts { align-items: end; margin-bottom: 4px; }
+.jv-text {
+  padding: 2px 0 2px 14px;
+  border-left: 3px solid var(--jv-accent);
+}
+.markdown-body .jv-eyebrow {
+  margin-bottom: 3px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--jv-accent);
+}
 .markdown-body .jv-headline {
   font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-  font-size: 1.14rem;
+  font-size: 1.12rem;
   line-height: 1.45;
   color: var(--jv-ink);
   hyphens: manual;
 }
-.markdown-body .jv-source,
+.jv-sources { margin-top: 2px; }
+.markdown-body .jv-source p,
 .markdown-body .jv-callout p {
   font-size: 0.76rem;
   line-height: 1.5;
   color: var(--jv-muted);
 }
+.markdown-body .jv-source .jv-intuition {
+  margin-bottom: 4px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--jv-ink);
+}
 .markdown-body .jv-callout p { color: var(--jv-ink-2); font-size: 0.8rem; }
-.markdown-body .jv-callout p + p { margin-top: 3px; }
+.markdown-body .jv-callout > * + * { margin-top: 4px; }
 .jv-callouts { margin: 2px 0 8px; }
 .jv-callouts[hidden] { display: none; }
+/* Narrow screens only: each step's captions take their own height */
+.jv-callouts > * { display: none; }
+.jv-callouts > .is-active { display: block; animation: jv-fade-in 0.45s ease both; }
 .jv-callout .jv-key-line { display: inline-block; vertical-align: middle; width: 14px; height: 8px; margin-right: 6px; overflow: visible; }
-.jv-sources { margin-top: 4px; }
+
+/* Definition box: over the chart's empty top-right corner on wide screens,
+   under the chart on narrow ones (placed by the script). */
+.jv-def {
+  padding: 8px 11px 9px;
+  border: 1px solid var(--jv-accent-border);
+  border-left: 3px solid var(--jv-accent);
+  border-radius: 4px;
+  background: var(--jv-sheet);
+  box-shadow: 0 4px 14px -10px rgba(70, 30, 25, 0.45);
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: var(--jv-ink-2);
+}
+.markdown-body .jv-def p { font-size: inherit; line-height: inherit; color: inherit; }
+.markdown-body .jv-def .jv-def-title { margin-bottom: 2px; color: var(--jv-ink); }
+.jv-def strong { font-weight: 700; color: var(--jv-accent); }
+.jv-def.is-overlay {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.35s ease, transform 0.45s ease;
+}
+.jv-def.is-overlay.is-on { opacity: 1; transform: none; transition-duration: 0.55s, 0.65s; }
+.jv-panel > .jv-def { display: none; }   // before the script places it
 
 /* Legend */
 .jv-legend {
@@ -320,11 +354,11 @@ body {
 .jv-key[hidden] { display: none; }
 .jv-key.is-dim { opacity: 0.5; }
 .jv-key.is-new { animation: jv-fade-in 0.5s ease both; }
-.jv-key svg { width: 22px; height: 12px; flex: none; overflow: visible; }
+.jv-key svg { width: 24px; height: 12px; flex: none; overflow: visible; }
 @keyframes jv-fade-in { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 
 /* Chart */
-.jv-chart { position: relative; margin: 8px 0 6px; touch-action: pan-y; }
+.jv-chart { position: relative; margin: 6px 0 6px; touch-action: pan-y; }
 .jv-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
 .jv-chart text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 500; }
 .jv-error { font-size: 0.85rem; color: var(--jv-muted); padding: 40px 0; text-align: center; }
@@ -333,11 +367,11 @@ body {
 .jv-tick { fill: var(--jv-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
 .jv-axis-title { fill: var(--jv-ink-2); font-size: 11.5px; }
 .jv-series { transition: opacity 0.55s ease; }
-.jv-line { fill: none; stroke-width: 2.25; stroke-linejoin: round; stroke-linecap: round; }
-.jv-line.jv-bold { stroke-width: 2.6; }
-.jv-dashed { stroke-dasharray: 8 5; }
-.jv-dotted { stroke-dasharray: 0.1 5.2; stroke-width: 2.7; }
-.jv-band { stroke: none; fill-opacity: 0.14; }
+.jv-line { fill: none; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.jv-line.jv-bold { stroke-width: 3.6; }
+.jv-dashed { stroke-dasharray: 10 6; }
+.jv-dotted { stroke-dasharray: 0.1 6.4; stroke-width: 3.5; }
+.jv-band { stroke: none; fill-opacity: 0.16; }
 .jv-s-ink { stroke: var(--jv-ink); }
 .jv-s-ink2 { stroke: var(--jv-ink-2); }
 .jv-s-muted { stroke: var(--jv-muted); }
@@ -354,12 +388,12 @@ body {
   fill: var(--jv-ink);
   font-size: 12.5px;
   paint-order: stroke;
-  stroke: var(--jv-sheet);
+  stroke: var(--jv-tint);
   stroke-width: 4px;
   stroke-linejoin: round;
 }
 .jv-note .jv-strong { font-weight: 600; }
-.jv-arrow { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.jv-arrow { fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
 /* Hover read-out */
 .jv-hit { fill: transparent; pointer-events: all; cursor: crosshair; }
@@ -391,7 +425,7 @@ body {
 .jv-tip-row svg { width: 16px; height: 8px; flex: none; overflow: visible; }
 
 /* Footer: step pips + back/next */
-.jv-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
+.jv-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; }
 .jv-pips { display: flex; align-items: center; gap: 7px; }
 .jv-pip {
   position: relative;
@@ -400,27 +434,27 @@ body {
   padding: 0;
   border: 0;
   border-radius: 999px;
-  background: #e4d4d1;
+  background: #dcc5c1;
   cursor: pointer;
   transition: width 0.3s ease, background-color 0.3s ease;
 }
 .jv-pip::after { content: ""; position: absolute; inset: -9px -4px; }
-.jv-pip.is-done { background: #caa29d; }
+.jv-pip.is-done { background: #c09893; }
 .jv-pip.is-active { width: 22px; background: var(--jv-accent); }
 .jv-pip:focus-visible { outline: 2px solid var(--jv-accent); outline-offset: 3px; }
 .jv-nav { display: flex; gap: 8px; }
 .jv-btn {
-  padding: 0.55em 1.05em;
+  padding: 0.5em 1em;
   border: 1px solid var(--jv-accent-border);
   border-radius: 999px;
-  background: transparent;
+  background: var(--jv-sheet);
   color: var(--jv-accent);
   font: 600 0.8rem/1.2 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-.jv-btn:hover { background: var(--jv-tint); }
-.jv-btn:disabled { opacity: 0.35; cursor: default; background: transparent; }
+.jv-btn:hover { border-color: var(--jv-accent); }
+.jv-btn:disabled { opacity: 0.4; cursor: default; border-color: var(--jv-accent-border); }
 .jv-btn:focus-visible { outline: 2px solid var(--jv-accent); outline-offset: 2px; }
 .jv-next { background: var(--jv-accent); border-color: var(--jv-accent); color: #fff; }
 .jv-next:hover { background: var(--jv-accent-dark); border-color: var(--jv-accent-dark); }
@@ -437,17 +471,16 @@ body {
 /* Turn transitions off while re-rendering, e.g. after a resize */
 .jv-instant * { transition: none !important; animation: none !important; }
 
-/* Keep the chart's surface steady while the reader works with it */
-.entry:has(.jv.is-open):hover { background-color: transparent; }
-
 @media (max-width: 640px) {
-  .jv-collapse { margin: 0 -16px; }
-  .jv-panel { padding: 16px 6px 8px; }
-  .markdown-body .jv-headline { font-size: 1.05rem; }
-  .jv-toggle-hint { display: none; }
-  .jv-btn { padding: 0.55em 0.9em; }
+  .jv-collapse { margin: 0 -10px; }
+  .jv-panel { padding: 12px 10px 10px; }
+  .jv-text { padding-left: 10px; }
+  .jv-sources > * { display: none; }
+  .jv-sources > .is-active { display: block; }
+  .markdown-body .jv-headline { font-size: 1.04rem; }
+  .jv-btn { padding: 0.5em 0.85em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .jv, .jv * { transition: none !important; animation: none !important; }
+  .jv, .jv *, .jv-toggle, .jv-toggle * { transition: none !important; animation: none !important; }
 }
