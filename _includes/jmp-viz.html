@@ -1,6 +1,6 @@
 {%- comment -%}
   "Main results, visualized": click-through animation of the JMP's main results.
-  The button is _includes/jmp-viz-toggle.html (on the card's link line).
+  The button is _includes/jmp-viz-toggle.html (first on the card's link line).
   Text: _data/jmp_viz.yml   Behaviour: assets/js/jmp-viz.js
   Data: assets/data/jmp-curves.json (built by _viz/build_curves.py)
   Styles: the "JMP visualization" block at the end of assets/css/style.scss
@@ -11,34 +11,39 @@
 <div class="jv-collapse" id="jmp-viz-panel" inert>
 <div class="jv-collapse-inner">
 <div class="jv-panel" role="group" aria-label="Main results of the job market paper, step by step">
-<div class="jv-stack jv-texts">
-{%- for s in steps -%}
-<div class="jv-text" data-step="{{ forloop.index0 }}" aria-hidden="true"><p class="jv-eyebrow">Step {{ forloop.index }} of {{ steps.size }}</p><p class="jv-headline">{{ s.headline }}</p></div>
-{%- endfor -%}
-</div>
-<div class="jv-chart"></div>
-<div class="jv-stack jv-callouts" hidden></div>
-<div class="jv-legend" aria-hidden="true"></div>
-<div class="jv-stack jv-sources">
-{%- for s in steps -%}
-<div class="jv-source" data-step="{{ forloop.index0 }}" aria-hidden="true">{%- if s.note -%}<p class="jv-intuition">{{ s.note }}</p>{%- endif -%}<p>{{ s.source }}</p></div>
-{%- endfor -%}
-</div>
-{%- for s in steps -%}
-{%- if s.definition -%}
-<aside class="jv-def" data-step="{{ forloop.index0 }}"><p class="jv-def-title"><strong>Definition.</strong> {{ s.definition.title }}</p><p>{{ s.definition.body }}</p></aside>
-{%- endif -%}
-{%- endfor -%}
-<div class="jv-foot">
+<div class="jv-bar">
+<div class="jv-progress">
+<p class="jv-eyebrow">Step <span class="jv-step-num">1</span> of {{ steps.size }}</p>
 <div class="jv-pips" role="group" aria-label="Go to step">
 {%- for s in steps -%}
 <button type="button" class="jv-pip" data-go="{{ forloop.index0 }}" aria-label="Step {{ forloop.index }}: {{ s.short }}"></button>
 {%- endfor -%}
 </div>
+</div>
 <div class="jv-nav">
 <button type="button" class="jv-btn jv-prev">&larr; Back</button>
 <button type="button" class="jv-btn jv-next">Next &rarr;</button>
 </div>
+</div>
+<div class="jv-textcard">
+<div class="jv-stack jv-texts">
+{%- for s in steps -%}
+<p class="jv-headline" data-step="{{ forloop.index0 }}" aria-hidden="true">{{ s.headline }}</p>
+{%- endfor -%}
+</div>
+</div>
+<div class="jv-chart"></div>
+<div class="jv-callouts" hidden></div>
+{%- for s in steps -%}
+{%- if s.definition -%}
+<aside class="jv-def" data-step="{{ forloop.index0 }}"><p class="jv-def-title"><strong>Definition.</strong> {{ s.definition.title }}</p><p>{{ s.definition.text }}</p><p class="jv-def-paper"><strong>In my paper:</strong> {{ s.definition.paper }}</p></aside>
+{%- endif -%}
+{%- endfor -%}
+<div class="jv-legend" aria-hidden="true"></div>
+<div class="jv-sources">
+{%- for s in steps -%}
+<div class="jv-source" data-step="{{ forloop.index0 }}" aria-hidden="true">{%- if s.note -%}<p class="jv-intuition">{{ s.note }}</p>{%- endif -%}<p>{{ s.source }}</p></div>
+{%- endfor -%}
 </div>
 <p class="jv-sr" aria-live="polite"></p>
 </div>

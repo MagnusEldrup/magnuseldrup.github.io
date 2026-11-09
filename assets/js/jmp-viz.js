@@ -175,7 +175,9 @@
   const chartEl = $('.jv-chart');
   const legendEl = $('.jv-legend');
   const calloutsEl = $('.jv-callouts');
-  const texts = $$('.jv-text');
+  const headlines = $$('.jv-headline');
+  const textsEl = $('.jv-texts');
+  const stepNum = $('.jv-step-num');
   const sources = $$('.jv-source');
   const defs = $$('.jv-def');
   const pips = $$('.jv-pip');
@@ -191,7 +193,6 @@
   let isOpen = false;
   let nodes = {};            // series key -> { g, rect }
   let noteNodes = {};        // note key -> <g>
-  let titleEl = null;
   let svgRoot = null;
   let cross = null;
   let tip = null;
@@ -278,8 +279,7 @@
     nodes = {};
     noteNodes = {};
 
-    svgRoot = svg('svg', { viewBox: `0 0 ${L.w} ${L.h}`, width: L.w, height: L.h, role: 'img', 'aria-labelledby': uid + '-t' });
-    titleEl = svg('title', { id: uid + '-t' }, svgRoot);
+    svgRoot = svg('svg', { viewBox: `0 0 ${L.w} ${L.h}`, width: L.w, height: L.h, role: 'img' });
     const svgDefs = svg('defs', {}, svgRoot);
     chartEl.appendChild(svgRoot);
 
@@ -347,7 +347,6 @@
     chartEl.appendChild(tip);
 
     built = true;
-    sizeLegend();
     return true;
   }
 
@@ -424,21 +423,6 @@
     });
   }
 
-  // Reserve the legend's tallest height so the chart never shifts between steps.
-  // On narrow screens content below the chart may move instead: a reserved
-  // block would leave large gaps there.
-  function sizeLegend() {
-    legendEl.style.minHeight = '';
-    if (L && L.narrow) return;
-    let max = 0;
-    STEPS.forEach((st) => {
-      LEGEND.forEach((it) => { legendKeys[it.key].hidden = !st.show[it.key]; });
-      max = Math.max(max, legendEl.offsetHeight);
-    });
-    legendEl.style.minHeight = max + 'px';
-    LEGEND.forEach((it) => { legendKeys[it.key].hidden = !(state[it.key].op > 0); });
-  }
-
   function buildCallouts(notes) {
     calloutsEl.textContent = '';
     calloutsEl.hidden = !L.narrow;
@@ -460,25 +444,31 @@
     });
   }
 
-  // Definition boxes: over the empty top-right of the plot on wide screens,
-  // with their step's callouts under the chart on narrow ones.
+  // Definition boxes: over the empty top-right of the plot when the chart is
+  // wide enough for the box to clear the curves, otherwise under the chart.
   function placeDefs() {
+    const overlay = L.pw >= 560;
     defs.forEach((d) => {
-      const i = +d.dataset.step;
-      d.classList.remove('is-overlay', 'is-on');
+      d.classList.remove('is-overlay', 'is-inline', 'is-on');
       d.removeAttribute('style');
-      if (L.narrow) {
-        if (calloutsEl.children[i]) calloutsEl.children[i].appendChild(d);
-        d.removeAttribute('aria-hidden');
-      } else {
+      d.setAttribute('aria-hidden', 'true');
+      if (overlay) {
         d.classList.add('is-overlay');
-        d.style.width = Math.min(Math.round(L.pw * 0.5), 330) + 'px';
+        d.style.width = Math.min(Math.round(L.pw * 0.62), 390) + 'px';
         d.style.top = L.m.t + 4 + 'px';
         d.style.right = L.m.r + 4 + 'px';
-        d.setAttribute('aria-hidden', 'true');
         chartEl.appendChild(d);
+      } else {
+        d.classList.add('is-inline');
+        calloutsEl.after(d);
       }
     });
+  }
+
+  // Animate the text card to the active headline's height; the chart below
+  // moves with it, while the controls above stay put.
+  function fitText(n) {
+    if (headlines[n]) textsEl.style.height = headlines[n].offsetHeight + 'px';
   }
 
   /* ---------- Steps ---------- */
@@ -525,13 +515,14 @@
       noteNodes[key].style.transitionDelay = on ? noteDelay + 'ms' : '0ms';
     });
     defs.forEach((d) => {
-      if (!d.classList.contains('is-overlay')) return;
       const on = +d.dataset.step === n;
       d.classList.toggle('is-on', on);
       d.setAttribute('aria-hidden', on ? 'false' : 'true');
-      d.style.transitionDelay = on ? noteDelay + 'ms' : '0ms';
+      if (d.classList.contains('is-overlay')) d.style.transitionDelay = on ? noteDelay + 'ms' : '0ms';
     });
-    titleEl.textContent = step.desc;
+    // aria-label rather than <title>: screen readers get it, but hovering the
+    // chart does not pop up a native tooltip.
+    svgRoot.setAttribute('aria-label', step.desc);
   }
 
   function updateLegend(n, animate) {
@@ -556,7 +547,8 @@
       el.classList.toggle('is-active', on);
       el.setAttribute('aria-hidden', on ? 'false' : 'true');
     });
-    activate(texts);
+    activate(headlines);
+    fitText(n);
     activate(sources);
     if (!calloutsEl.hidden) activate(Array.from(calloutsEl.children));
     pips.forEach((p, i) => {
@@ -564,12 +556,12 @@
       p.classList.toggle('is-done', i < n);
       if (i === n) p.setAttribute('aria-current', 'step'); else p.removeAttribute('aria-current');
     });
+    stepNum.textContent = n + 1;
     prevBtn.disabled = n === 0;
     const last = n === STEPS.length - 1;
     nextBtn.innerHTML = last ? 'Start over &#8635;' : 'Next &rarr;';
     nextBtn.setAttribute('aria-label', last ? 'Start over from step 1' : 'Next step');
-    const headline = texts[n] && texts[n].querySelector('.jv-headline');
-    const text = headline ? headline.textContent.trim() : '';
+    const text = headlines[n] ? headlines[n].textContent.trim() : '';
     live.textContent = `Step ${n + 1} of ${STEPS.length}. ${text} ${STEPS[n].desc}`;
   }
 
@@ -603,7 +595,7 @@
       setClip(s.key, 0);
     });
     Object.values(noteNodes).forEach((g) => g.classList.remove('is-on'));
-    defs.forEach((d) => { if (d.classList.contains('is-overlay')) d.classList.remove('is-on'); });
+    defs.forEach((d) => d.classList.remove('is-on'));
     LEGEND.forEach((it) => { legendKeys[it.key].hidden = true; });
     void panel.offsetWidth;
     panel.classList.remove('jv-instant');

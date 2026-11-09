@@ -37,8 +37,8 @@ _Job Market Paper_
   <p><strong>Recipient of grants from</strong> the Nordic Tax Research Council, The Structural Transformation and Economic Growth (STEG) programme, and the Ministry of Foreign Affairs of Denmark (DANIDA)</p>
 </div>
 
-<details>
-<summary><strong>Abstract (click to expand)</strong> &middot; <a href="https://www.econ.ku.dk/cebi/publikationer/working-papers/CEBI_WP_19-26.pdf">Working Paper</a> &middot; <a href="{{ '/assets/horizontal-inequality.pdf' | relative_url }}">Newest Version</a>{% include jmp-viz-toggle.html %}</summary>
+<details class="jv-has-toggle">
+<summary>{% include jmp-viz-toggle.html %}<strong>Abstract (click to expand)</strong> &middot; <a href="https://www.econ.ku.dk/cebi/publikationer/working-papers/CEBI_WP_19-26.pdf">Working Paper</a> &middot; <a href="{{ '/assets/horizontal-inequality.pdf' | relative_url }}">Newest Version</a></summary>
 Exemptions are a key feature of income tax systems in developing countries, yet standard optimal tax models cannot explain them. By assuming full compliance, these models ignore horizontal inequality between formal and informal workers, understating the welfare cost of taxing the former. Extending the optimal tax framework, I incorporate informality and horizontal inequality aversion with a flexible Paretian approach. I conduct a survey experiment in Kenya, finding that the median response places more than four times as much welfare weight on formal taxpayers as on informal workers with the same gross income. Combining these preferences with administrative tax data yields prescriptions of high exemption thresholds, even without administrative costs or extensive-margin responses.
 </details>
 

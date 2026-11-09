@@ -179,7 +179,7 @@ body {
 }
 
 /* ---- JMP visualization ("Main results, visualized") ----
-   Toggle: _includes/jmp-viz-toggle.html (on the card's link line)
+   Toggle: _includes/jmp-viz-toggle.html (first on the card's link line)
    Panel:  _includes/jmp-viz.html · script: assets/js/jmp-viz.js
    The three planner colors were checked together for color-blind separation
    and >= 3:1 contrast against $tint-strong (the panel) and $sheet; re-check
@@ -203,26 +203,53 @@ body {
 }
 .jv { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
 
-/* Toggle: a small chip on the same line as the abstract and paper links.
-   Its wrapper stays hidden until the script has loaded. */
+/* Toggle: a filled pill, first on the JMP card's link line (inside the
+   abstract's <summary>). Its wrapper stays hidden until the script has loaded. */
 .jv-toggle-wrap[hidden] { display: none; }
+.jv-toggle-wrap { margin-right: 0.75em; }
 .jv-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 0.35em;
+  gap: 0.4em;
   margin: 0;
-  padding: 0.08em 0.6em 0.08em 0.5em;
-  border: 1px solid var(--jv-accent-border);
+  padding: 0.32em 0.85em 0.32em 0.7em;
+  border: 0;
   border-radius: 999px;
-  background: var(--jv-tint);
-  color: var(--jv-accent);
-  font: 600 1em/1.45 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  vertical-align: baseline;
+  background: var(--jv-accent);
+  color: #fff;
+  font: 600 1em/1.2 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  // Centre the pill on the line's text instead of sitting on its baseline.
+  vertical-align: middle;
+  position: relative;
+  top: -0.08em;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  box-shadow: 0 1px 2px rgba(70, 30, 25, 0.18), 0 4px 12px -7px rgba(153, 80, 74, 0.75);
+  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
-.jv-toggle:hover { background: var(--jv-tint-deep); border-color: var(--jv-accent); }
+.jv-toggle:hover {
+  background: var(--jv-accent-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(70, 30, 25, 0.2), 0 8px 18px -9px rgba(153, 80, 74, 0.85);
+}
+.jv-toggle:active { transform: none; }
 .jv-toggle:focus-visible { outline: 2px solid var(--jv-accent); outline-offset: 2px; }
+
+/* With the button first on the line, the abstract's disclosure triangle moves
+   from the start of the line to just before "Abstract". */
+.markdown-body details.jv-has-toggle > summary { list-style: none; }
+.markdown-body details.jv-has-toggle > summary::-webkit-details-marker { display: none; }
+.markdown-body details.jv-has-toggle > summary > strong { white-space: nowrap; }
+.markdown-body details.jv-has-toggle > summary > strong::before {
+  content: "";
+  display: inline-block;
+  margin: 0 0.45em 0.08em 0;
+  border-left: 0.42em solid currentColor;
+  border-top: 0.27em solid transparent;
+  border-bottom: 0.27em solid transparent;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+.markdown-body details.jv-has-toggle[open] > summary > strong::before { transform: rotate(90deg); }
 .jv-toggle-icon, .jv-chevron { flex: none; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
 .jv-toggle-icon { width: 1.05em; height: 1.05em; stroke-width: 1.9; }
 .jv-toggle-line { stroke-dasharray: 22; stroke-dashoffset: 0; }
@@ -253,28 +280,18 @@ body {
 .jv.is-open .jv-panel { opacity: 1; transform: none; transition-delay: 0.08s; }
 .markdown-body .jv-panel p { margin: 0; text-align: left; }
 
-/* Per-step text is stacked in one grid cell, so the tallest step sets the
-   height and nothing below jumps when the text changes. Step text sits at
-   the bottom of its cell, right above the chart it describes. */
-.jv-stack { display: grid; }
-.jv-stack > * {
-  grid-area: 1 / 1;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+/* Top bar: step counter, pips and Back/Next. Keeping the controls above the
+   text means nothing the reader clicks moves when the text changes height. */
+.jv-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 14px;
+  margin-bottom: 10px;
 }
-.jv-stack > .is-active {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.45s ease 0.12s, visibility 0s;
-}
-.jv-texts { align-items: end; margin-bottom: 4px; }
-.jv-text {
-  padding: 2px 0 2px 14px;
-  border-left: 3px solid var(--jv-accent);
-}
+.jv-progress { display: flex; align-items: center; gap: 12px; }
 .markdown-body .jv-eyebrow {
-  margin-bottom: 3px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 0.68rem;
   font-weight: 600;
@@ -282,6 +299,29 @@ body {
   text-transform: uppercase;
   color: var(--jv-accent);
 }
+
+/* Step text: a white card above the chart. The headlines share one grid cell
+   and cross-fade; the script animates the cell's height to the active one. */
+.jv-textcard {
+  padding: 10px 14px 11px;
+  border-left: 3px solid var(--jv-accent);
+  border-radius: 4px;
+  background: var(--jv-sheet);
+  box-shadow: 0 1px 2px rgba(70, 30, 25, 0.07);
+}
+.jv-stack { display: grid; align-items: start; }
+.jv-stack > * {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+}
+.jv-stack > .is-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.45s ease 0.15s, visibility 0s;
+}
+.jv-texts { overflow: hidden; transition: height 0.45s cubic-bezier(0.2, 0.75, 0.25, 1); }
 .markdown-body .jv-headline {
   font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   font-size: 1.12rem;
@@ -289,7 +329,10 @@ body {
   color: var(--jv-ink);
   hyphens: manual;
 }
+/* Below the chart, each step's content takes its own height. */
 .jv-sources { margin-top: 2px; }
+.jv-sources > * { display: none; }
+.jv-sources > .is-active { display: block; animation: jv-fade-in 0.45s ease both; }
 .markdown-body .jv-source p,
 .markdown-body .jv-callout p {
   font-size: 0.76rem;
@@ -306,13 +349,12 @@ body {
 .markdown-body .jv-callout > * + * { margin-top: 4px; }
 .jv-callouts { margin: 2px 0 8px; }
 .jv-callouts[hidden] { display: none; }
-/* Narrow screens only: each step's captions take their own height */
 .jv-callouts > * { display: none; }
 .jv-callouts > .is-active { display: block; animation: jv-fade-in 0.45s ease both; }
 .jv-callout .jv-key-line { display: inline-block; vertical-align: middle; width: 14px; height: 8px; margin-right: 6px; overflow: visible; }
 
 /* Definition box: over the chart's empty top-right corner on wide screens,
-   under the chart on narrow ones (placed by the script). */
+   under the chart otherwise (placed by the script). */
 .jv-def {
   padding: 8px 11px 9px;
   border: 1px solid var(--jv-accent-border);
@@ -326,7 +368,9 @@ body {
 }
 .markdown-body .jv-def p { font-size: inherit; line-height: inherit; color: inherit; }
 .markdown-body .jv-def .jv-def-title { margin-bottom: 2px; color: var(--jv-ink); }
+.markdown-body .jv-def .jv-def-paper { margin-top: 3px; }
 .jv-def strong { font-weight: 700; color: var(--jv-accent); }
+.jv-def .jv-def-paper strong { color: var(--jv-ink); }
 .jv-def.is-overlay {
   position: absolute;
   z-index: 1;
@@ -336,7 +380,9 @@ body {
   transition: opacity 0.35s ease, transform 0.45s ease;
 }
 .jv-def.is-overlay.is-on { opacity: 1; transform: none; transition-duration: 0.55s, 0.65s; }
-.jv-panel > .jv-def { display: none; }   // before the script places it
+.jv-def.is-inline { display: none; margin: 4px 0 10px; }
+.jv-def.is-inline.is-on { display: block; animation: jv-fade-in 0.45s ease both; }
+.jv-panel > .jv-def:not(.is-inline) { display: none; }   // before the script places it
 
 /* Legend */
 .jv-legend {
@@ -424,8 +470,7 @@ body {
 .jv-tip-row.is-dim { opacity: 0.55; }
 .jv-tip-row svg { width: 16px; height: 8px; flex: none; overflow: visible; }
 
-/* Footer: step pips + back/next */
-.jv-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; }
+/* Step pips + back/next (in the top bar) */
 .jv-pips { display: flex; align-items: center; gap: 7px; }
 .jv-pip {
   position: relative;
@@ -474,11 +519,10 @@ body {
 @media (max-width: 640px) {
   .jv-collapse { margin: 0 -10px; }
   .jv-panel { padding: 12px 10px 10px; }
-  .jv-text { padding-left: 10px; }
-  .jv-sources > * { display: none; }
-  .jv-sources > .is-active { display: block; }
+  .jv-textcard { padding: 9px 11px 10px; }
   .markdown-body .jv-headline { font-size: 1.04rem; }
   .jv-btn { padding: 0.5em 0.85em; }
+  .jv-progress { gap: 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

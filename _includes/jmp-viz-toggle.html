@@ -1,6 +1,7 @@
 {%- comment -%}
-  Small toggle for the "Main results, visualized" panel, placed on the JMP card's
-  link line (inside the abstract's <summary>). Must render as one line. Hidden
-  until assets/js/jmp-viz.js has loaded. The panel itself is _includes/jmp-viz.html.
+  Button for the "Main results, visualized" panel: first item on the JMP card's
+  link line (inside the abstract's <summary>, whose details element carries the
+  class jv-has-toggle). Must render as one line. Hidden until
+  assets/js/jmp-viz.js has loaded. The panel itself is _includes/jmp-viz.html.
 {%- endcomment -%}
-<span class="jv-toggle-wrap" hidden> &middot; <button type="button" class="jv-toggle" data-jv-toggle aria-expanded="false" aria-controls="jmp-viz-panel"><svg class="jv-toggle-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path class="jv-toggle-line" d="M3 14.5l4-4.5 3.5 2.5L16.5 5"/></svg><span>Main results, visualized</span><svg class="jv-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5l3 3 3-3"/></svg></button></span>
+<span class="jv-toggle-wrap" hidden><button type="button" class="jv-toggle" data-jv-toggle aria-expanded="false" aria-controls="jmp-viz-panel"><svg class="jv-toggle-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path class="jv-toggle-line" d="M3 14.5l4-4.5 3.5 2.5L16.5 5"/></svg><span>Main results, visualized</span><svg class="jv-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5l3 3 3-3"/></svg></button></span>
